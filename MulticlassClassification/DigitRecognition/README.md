@@ -132,8 +132,6 @@ What can you say about the accuracy? Is this a good model? How far away are you 
 
 Think about the pipeline in this assignment. How could you improve the accuracy of the model even further?
 
-Share your results in our Slack group!
-
 ## Cleaning up
 
 The NC6 virtual machines are expensive to run, so make sure to delete the GPU cluster after you have completed this assignment!

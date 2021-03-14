@@ -111,5 +111,3 @@ Now try to improve the model. Go to the Linear Regression module and set the sol
 Select the Apply SQL Transformation module and edit the SQL statement to remove any columns that you deem non-relevant to the price prediction. Rerun the pipeline and check the results. Did your RMSE improve or get worse? 
 
 What's your best RMSE value?
-
-Please share your results in our Slack homework group!

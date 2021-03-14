@@ -86,5 +86,3 @@ What results do you get? What is your accuracy, precision, recall, AUC, and F1 v
 Is this dataset balanced? Which metrics should you use to evaluate your model? And what do the values say about the accuracy of your model? 
 
 How could you improve the accuracy of the model? What are your best AUC values? 
-
-Share your results in our Slack homework group!

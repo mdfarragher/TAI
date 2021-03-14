@@ -68,5 +68,3 @@ Is this dataset balanced? Which metrics should you use to evaluate your model? A
 Take a look at the individual columns in the dataset. Do any columns require further processing? Does you result improve if you add these processing steps to the pipeline? 
 
 Do you think a decision tree is a good choice to predict Titanic survivors? Which other algorithms could you use instead? Do they give a better result?
-
-Share your results in our group!

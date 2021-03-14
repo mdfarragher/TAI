@@ -106,5 +106,3 @@ Run the pipeline in a new experiment, and check out the results after the run ha
 ## Results
 
 So what are your results? What are my 5 favorite movies according to the recommendation model? Use the other movie CSV file with all the movie titles to map the recommended movie IDs to their corresponding title values.
-
-Post your results in our Slack group and then ask me if the predictions are correct ;)

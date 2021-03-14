@@ -67,4 +67,4 @@ See if you can answer the following questions:
 * Which columns have many outliers trailing their normal distribution? 
 * How would you process these outliers?
 
-To complete this assignment, describe how you would process the data columns in the California Housing dataset to prepare for machine learning training. Explain how you would process each column, and share your conclusions in our Slack homework group. 
+To complete this assignment, describe how you would process the data columns in the California Housing dataset to prepare for machine learning training. Explain how you would process each column. 

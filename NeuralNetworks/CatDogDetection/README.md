@@ -180,8 +180,6 @@ What results do you get? What is your overall accuracy and your micro- and macro
 
 Are you happy with these results?
 
-Share your results in our Slack group!
-
 ## Cleaning up
 
 The NC6 virtual machines are expensive to run, so make sure to delete the GPU cluster after you have completed this assignment!

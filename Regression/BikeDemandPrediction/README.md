@@ -88,5 +88,3 @@ Run the pipeline in a new experiment, and check out the evaluation results after
 What results do you get? What are your RMSE and MAE values? Is this a good result? 
 
 Now take a look at the hyperparameters. Try to change the behavior of the ensemble learning algorithm and see what happens to the accuracy of your model. Did your model improve or get worse? 
-
-Share your results in our Slack group!

@@ -87,5 +87,3 @@ Run the pipeline in a new experiment, and check out the results after the run ha
 ## Results
 
 Open the output file and check the predictions for every flower. How often does the model get it wrong? Which Iris types are the most confusing to the model?
-
-Share your results in our Slack group. 
