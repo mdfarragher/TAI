@@ -18,7 +18,7 @@ Let's get started. Your first task is to start the Azure Machine Learning design
 
 Open your Azure Machine Learning Workspace and click on the Designer link in the menu on the left. Then click on the california-housing-pipeline in the list of pipeline drafts:
 
-![Regression step 1](./assets/california1.png)
+![Regression step 1](./assets/new/image1.png)
 
 This will open the pipeline designer.
 
@@ -36,7 +36,7 @@ Then enter the following in the information panel on the right:
 * Random seed: 123
 * Stratified split: False
 
-![Regression step 2](./assets/california2.png)
+![Regression step 2](./assets/new/image3.png)
 
 What this does is randomize the data and then split the data into one set of 80% of all records, and a second set with 20% of all records. We will train on the 80% set and then test our predictions on the 20% set.
 
@@ -50,7 +50,7 @@ Now look at the information panel on the right. You need to specify the Label Co
 
 Your pipeline should now look like this:
 
-![Regression step 3](./assets/california3.png)
+![Regression step 3](./assets/new/image5.png)
 
 Next, we need to specify a learning algorithm for this pipeline. We are going to use linear regression to train the mode, so open the Machine Learning Algorithms group and drag the Linear Regression module on the pipeline canvas.
 
@@ -60,7 +60,7 @@ You can see from the design that the Train Model module receives the training al
 
 You can leave the properties of the Linear Regression module to their default values: using Ordinary Least Squares with a 0.001 L2 Regularization weight.
 
-![Regression step 4](./assets/california4.png)
+![Regression step 4](./assets/new/image7.png)
 
 Next, we need to **score** the model. This means using the fully-trained model to generate predictions from the remaining 20% of the data that we haven't used yet. 
 
@@ -72,7 +72,7 @@ You can see from the design that the Score Model module receives the fully-train
 
 You can leave the properties of the Score Model module to their default values.
 
-![Regression step 5](./assets/california5.png)
+![Regression step 5](./assets/new/image9.png)
 
 We're almost done. The last step is to compare the scored predictions to the actual labels in the dataset, and then compute a bunch of evaluation metrics like the RMSE value. 
 
@@ -82,7 +82,7 @@ From the Model Scoring & Evaluation group, drag the Evaluate Model module onto t
 
 You'll notice that the Evaluate Model module has two inputs. This is for comparing two models trained on the same dataset. As we only use a single model in this assignment, use the leftmost input and leave the other one unconnected.
 
-![Regression step 6](./assets/california6.png)
+![Regression step 6](./assets/new/image11.png)
 
 That's it! Your pipeline is now all done and ready to start.
 
@@ -94,7 +94,7 @@ Click on the blue Submit button in the top right of the page. Then provide the f
 
 And click the Submit button to start running the pipeline.
 
-![Regression step 7](./assets/california7.png)
+![Regression step 7](./assets/new/image12.png)
 
 It will take about 5-10 minutes to train the model, score predictions, and compare the predictions with the labels in the dataset and calculate the evaluation metrics.
 
@@ -102,7 +102,7 @@ You'll be notified when the run completes. You'll see Run Complete appear in the
 
 To view the evaluation results, click on the Evaluate Model module, and then in the information panel select the Output+Logs tab and click on the visualization icon:
 
-![Regression step 8](./assets/california8.png)
+![Regression step 8](./assets/new/image14.png)
 
 What results do you get? What are your RMSE and MAE values? Is this a good result?
 
