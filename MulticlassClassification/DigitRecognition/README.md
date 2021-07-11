@@ -48,22 +48,13 @@ So upload the files separately and create the following datasets:
 * mnist-train (with training data)
 * mnist-test (with testing data)
 
-The pipeline for this case study is going to be very similar to the Cleveland Heart Disease pipeline you created in the previous lesson. So to get started quickly, simply clone that pipeline. 
-
-Then you only need to make the following changes:
-
-* Replace the dataset modules
-* Replace the data processing modules
-* Use a multiclass classification learning algorithm
-* Select the correct label column
+Both files have column headers in the first row, so make sure you specify this when creating the datasets!
 
 ## Building a multiclass classification pipeline
 
 Let's get started building our multiclass classification pipeline.
 
-First, make sure you have uploaded the MNIST training and testing files into new tabular datasets. The files have column headers so make sure to select that option during the upload. Also check that all columns are imported as integers.
-
-Then clone the California Housing pipeline. Name the copy mnist-pipeline. 
+Start by cloning the completed California Housing pipeline. Name the copy mnist-pipeline. 
 
 In the pipeline designer, delete the heart disease dataset and replace it with the two MNIST training and testing datasets. 
 
@@ -73,9 +64,7 @@ Connect the output of the training dataset to the **rightmost** input of the Tra
 
 Your pipeline should now look like this:
 
-![Setup multiclass pipeline step 1](./assets/pipeline1.png)
-
-We're almost done. 
+![Setup multiclass pipeline step 1](./assets/new/image1.png)
 
 Now remove the Two-Class Logistic Regression module, and replace it with a Multiclass Logistic Regression module. 
 
@@ -88,37 +77,48 @@ Configure the multiclass regression as follows:
 * L2 regularization weight: 1.0
 * Random number seed: 123
 
-![Setup multiclass pipeline step 2](./assets/pipeline2.png)
+![Setup multiclass pipeline step 2](./assets/new/image3.png)
 
 Now select the Train Model module and set the label column to: label.
 
-![Setup multiclass pipeline step 3](./assets/pipeline3.png)
+![Setup multiclass pipeline step 3](./assets/new/image5.png)
 
 That's it, your pipeline is done.
 
 ## Set up a GPU cluster
 
-Unfortunately the MNIST dataset is too large to run on our basic D1 compute cluster, so we're going to have to quickly provision some heavy duty hardware.
+Unfortunately the MNIST dataset is too large to run on a basic D1 compute cluster, so we're going to have to provision heavy duty hardware.
+
+If you created a D1 CPU cluster at the start of this training and not an NC6 GPU cluster, then now's the time to set one up. 
 
 Go to the Compute page in Azure ML Studio and select the Compute Clusters tab. 
 
+![Setup GPU cluster](./assets/new/image7.png)
+
 Click the +New button, and add the following cluster:
 
-* Compute name: [choose a name for the cluster]
+* Virtual machine priority: Dedicated
 * Virtual machine type: GPU
 * Virtual machine priority: Low priority
-* Virtual machine size: Standard_NC6
+* Virtual machine size: Select from recommended options
+* Name: Standard_NC6
+
+![Setup GPU cluster](./assets/new/image8.png)
+
+And on the next page:
+
+* Compute name: [choose a name for the cluster]
 * Minimum number of nodes: 0
 * Maximum number of nodes: 2
 * Idle seconds...: 120
 
-![Setup GPU cluster](./assets/cluster.png)
-
 Click the blue Create button and wait until the cluster is up and running. 
 
-Then switch back to the pipeline canvas, click the gear icon at the top of the page, and in the information panel switch the pipeline over to the new compute cluster.
+![Setup GPU cluster](./assets/new/image10.png)
 
-![Setup multiclass pipeline step 4](./assets/pipeline4.png)
+With the cluster up and running, switch back to the pipeline canvas, click the gear icon at the top of the page, and in the information panel switch the pipeline over to the new compute cluster.
+
+![Setup multiclass pipeline step 4](./assets/new/image12.png)
 
 Now run the pipeline in a new experiment, and check out the evaluation results after the run has completed.
 
@@ -131,9 +131,3 @@ Do you think the dataset is balanced?
 What can you say about the accuracy? Is this a good model? How far away are you from the human accuracy rate? Is this a superhuman or subhuman AI? 
 
 Think about the pipeline in this assignment. How could you improve the accuracy of the model even further?
-
-## Cleaning up
-
-The NC6 virtual machines are expensive to run, so make sure to delete the GPU cluster after you have completed this assignment!
-
-If you keep the cluster running, you will very quickly spend all of your free Azure credits and your account will be disabled. 
