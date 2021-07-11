@@ -41,13 +41,13 @@ Now connect the output of the dataset module to the **leftmost** input of the SQ
 
 Your pipeline should now look like this:
 
-![Setup pipeline step 1](./assets/pipeline1.png)
+![Setup pipeline step 1](./assets/new/image1.png)
 
 Next, we need to encode the text column to a vector of numbers so that we can train a machine learning model on the data.
 
 Open the Text Analytics group and drag the Feature Hashing module onto the pipeline canvas. Connect it to the previous SQL Transformation module, and in the information panel set the Target column to: text.
 
-![Setup pipeline step 2](./assets/pipeline2.png)
+![Setup pipeline step 2](./assets/new/image3.png)
 
 There's one more transformation step we need to perform. 
 
@@ -61,7 +61,7 @@ Configure the module to select columns by indices, and specify the indices: 1, 3
 
 This will keep all columns except column 2 which contains the original SMS text. 
 
-![Setup pipeline step 3](./assets/pipeline3.png)
+![Setup pipeline step 3](./assets/new/image5.png)
 
 Now continue the pipeline in the usual manner. Split the data 80/20 and use the 80% set for training. 
 
@@ -69,11 +69,9 @@ Score the model with the 20% test set and evaluate the scored predictions to cal
 
 Make sure you use the Two-Class Boosted Decision Tree algorithm for training the model. Decision trees are fast and really good at binary text classification. 
 
-We will cover decision trees in depth in a later section.
-
 Your pipeline should look like this:
 
-![Setup pipeline step 4](./assets/pipeline4.png)
+![Setup pipeline step 4](./assets/new/image7.png)
 
 That's it, your pipeline is done.
 
