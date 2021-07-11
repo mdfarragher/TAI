@@ -22,23 +22,23 @@ Make sure you have set up the California Housing dataset by following the instru
 
 ## Profile the California Housing dataset
 
-Let's get started. Navigate to the dataset overview page and select the California Housing dataset. Then, in the dataset overview page, click on the Generate Profile button. 
+Let's get started. Navigate to the dataset overview page and select the California Housing dataset. Then, in the dataset overview page, click on the Generate Profile button (it's the button with the 'play' icon). 
 
-You'll need to specify which compute cluster to use to generate the profile. We have only configured a single 2-vm cluster, so select that cluster from the dropdown list. Then click the blue Generate button to start the run.
+You'll need to specify which compute cluster to use to generate the profile. We have configured a cluster earlier, so select that cluster from the dropdown list. Then click the blue Generate button to start the run.
 
-![Generate profile step 1](./assets/profile.png)
+![Generate profile step 1](./assets/new/image2.png)
 
 After a couple of seconds you'll find yourself back in the dataset overview page, with a green notification banner indicating that profile generation has started.
 
 Click the link in the banner to view the generation job status while it's running. 
 
-![Generate profile step 2](./assets/profile2.png)
+![Generate profile step 2](./assets/new/image3.png)
 
 Every time you generate a profile for a dataset, Azure Machine Learning will create a new **experiment** to track progress and store the results. We will discuss Azure Machine Learning Experiments in detail in a later lesson.
 
 For now, keep an eye on the run status in the top left of the page. You can click the Refresh button periodically to update the page and check if the experiment has concluded.
 
-![Generate profile step 3](./assets/profile3.png)
+![Generate profile step 3](./assets/new/image4.png)
 
 Generating a full profile takes a couple of minutes. The experiment needs to be set up, transferred to the compute cluster, executed there, and the results need to be collected. This entire process can take 5-10 minutes.
 
@@ -46,7 +46,7 @@ For relatively small data files like the California housing dataset this process
 
 Eventually the experiment will complete, and the status in the top left of the page will read: Completed.
 
-![Generate profile step 4](./assets/profile4.png)
+![Generate profile step 4](./assets/new/image5.png)
 
 You cannot view the profile from the experiment. Instead, go back to the datasets overview page and select the California housing dataset. 
 
@@ -54,7 +54,7 @@ Then click on the Explore tab and select the Profile sub-tab. You will now see t
 
 Note that the Count column in the profile correctly shows 17,000 values for every data column.
 
-![Generate profile step 5](./assets/profile5.png)
+![Generate profile step 5](./assets/new/image6.png)
 
 Now take a look at each column. What do you think of the quality of this dataset? Are all the columns ready for machine learning training?
 
