@@ -12,37 +12,37 @@ Make sure you have set up the California Housing dataset by following the instru
 
 Let's get started. Your first task is to start the Azure Machine Learning designer and use it to create the pipeline.
 
-Go to your Azure Machine Learning workspace and click the Designer link in the menu on the left. You'll be taken to the pipeline overview page:
+Go to your Azure Machine Learning workspace and click the Designer link in the menu on the left. You'll be taken to the designer overview page:
 
-![Setup pipeline step 1](./assets/pipeline1.png)
+![Setup pipeline step 1](./assets/new/image1.png)
 
 Click the big + button in the top left of the page to create a new pipeline. 
 
-The graphical pipeline designer will open. You'll see a prompt to specify the compute target. This is the virtual machine instance or cluster that the pipeline will run on. 
+The graphical pipeline designer will open. You'll see a red prompt to specify the compute target. This is the virtual machine cluster that the pipeline will run on. 
 
-Click the 'Select Compute Target' link and specify the virtual machine cluster you set up earlier. 
+Click the 'Please select the default compute target' banner and specify the virtual machine cluster you set up earlier. 
 
 Then change the default name and description of the pipeline. Name the pipeline 'california-housing-pipeline' and change the description to: 'Train a model on the California housing dataset'.
 
-![Setup pipeline step 2](./assets/pipeline2.png)
+![Setup pipeline step 2](./assets/new/image4.png)
 
 Now let's start building the pipeline. We want to start by loading the California Housing dataset.
 
 Click on the Datasets link in the menu on the left, and drag the california-housing-dataset onto the pipeline canvas like this:
 
-![Setup pipeline step 3](./assets/pipeline3.png)
+![Setup pipeline step 3](./assets/new/image6.png)
 
 An information panel will open on the right of the page with details about the dataset module. 
 
 You can quickly inspect the data by clicking on the Output tab and then clicking the graph icon:
 
-![Setup pipeline step 4](./assets/pipeline4.png)
+![Setup pipeline step 4](./assets/new/image8.png)
 
 This will open the dataset explorer and display interesting statistics about the data columns, just like when we generated the dataset profile. 
 
 Click on the total_rooms column. Notice the max value (37937) and the histogram with the long tail of outliers. Clearly there's something strange going on with this column. Some of the housing blocks have almost 38,000 rooms! 
 
-![Setup pipeline step 5](./assets/pipeline5.png)
+![Setup pipeline step 5](./assets/new/image9.png)
 
 These outliers are probably hotels. Unfortunately they are going to mess up our training if we want to use this data to predict residential housing block prices. 
 
@@ -60,11 +60,11 @@ We can achieve all of these transformations with a single module.
 
 Click on the Data Transformation group and drag the Apply SQL Transformation module onto the pipeline canvas:
 
-![Setup pipeline step 6](./assets/pipeline6.png)
+![Setup pipeline step 6](./assets/new/image11.png)
 
 Connect the dataset and the SQL transformation modules together. Drag the bottom circle of the california-housing-dataset module on to the top-left circle of the Apply SQL Transformation module, like this:
 
-![Setup pipeline step 7](./assets/pipeline7.png)
+![Setup pipeline step 7](./assets/new/image13.png)
 
 Now enter the following SQL query in the information panel on the right: 
 
@@ -97,21 +97,21 @@ Provide the following information:
 
 And click the blue Submit button to start the run.
 
-![Setup pipeline step 8](./assets/pipeline8.png)
+![Setup pipeline step 8](./assets/new/image15.png)
 
 While the pipeline is running, you'll see the run status in the top right of the pipeline designer page. 
 
 Wait for the status to be completed. This can take a couple of minutes. 
 
-When the run has completed, you'll see the status 'Run Finished' in the top right of the page. The Apply SQL Transformation module will also have a green checkmark to indicate that it has run successfully:
+When the run has completed, you'll see the status 'Run Finished' in the top right of the page. The Apply SQL Transformation module will also have a vertical green bar on the left of the box to indicate that it has run successfully:
 
-![Setup pipeline step 9](./assets/pipeline9.png)
+![Setup pipeline step 9](./assets/new/image17.png)
 
 You can now click the Apply SQL Transformation module again. You'll notice in the information panel on the right that there is an 'Output + Logs' tab. 
 
 Click the tab and then click the visualize icon in the Result_dataset box. 
 
-![Setup pipeline step 10A](./assets/pipeline10a.png)
+![Setup pipeline step 10A](./assets/new/image19.png)
 
 You'll see the same data explorer pop up that we saw previously when testing the dataset module. 
 
@@ -119,7 +119,7 @@ But now notice the columns. Do you see the new rooms_per_person column? Notice t
 
 Also check out the median_house_value column and notice that all values have been divided by 1,000. 
 
-![Setup pipeline step 10B](./assets/pipeline10b.png)
+![Setup pipeline step 10B](./assets/new/image20.png)
 
 Congratulations! You have successfully prepared the California Housing dataset for machine learning training. 
 
