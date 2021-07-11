@@ -4,7 +4,7 @@ In this assignment you will set up the Azure Machine Learning workspace that you
 
 ## Before You Start
 
-To complete the assignments in this course, you will need an Azure subscription. If you do not already have one, you can sign up for a free trial at [https://azure.microsoft.com](https://azure.microsoft.com). Check out the course prerequisites section for a detailed walkthrough on how to create a new Azure subscription. 
+To complete the assignments in this course, you will need an Azure subscription. If you do not already have one, you can sign up for a free trial at [https://azure.microsoft.com](https://azure.microsoft.com).  
 
 ## Create a new Azure Machine Learning Workspace
 
@@ -28,19 +28,22 @@ Click the Create button to confirm your choice:
 
 Now create a new machine learning workspace and provide the following details:
 
-* The name of the machine learning workspace. 
-* The Azure subscription in which you will place the workspace. 
-* The resource group in which you will place the workspace. It's a good idea to create a new resource group for this training and give it a descriptive name, for example: 'cloud-ai-resources'. 
-* The location in which to place the workspace. This corresponds to the Azure datacenter that will host your machine learning files. Choose a location that's closest to where you are working to minimize latency.
-* The workspace edition. Here you'll need to select 'Enterprise' because we will be using the visual model designer in this course, and the designer is only available in the enterprise edition.
+* The Azure subscription in which you will place the workspace. Select your Azure Pass Sponsorship from the list.
+* The resource group in which you will place the workspace. It's a good idea to create a new resource group for this training and give it a descriptive name, for example: 'rg-techionista-dp100'. 
+* The name of the machine learning workspace. Give your workspace a nice unique name that contains the words 'techionista', 'dp100' and perhaps your initials too.
+* The region in which to place the workspace. This corresponds to the Azure datacenter that will host your machine learning files. You should choose the location that's closest to where you are working to minimize latency, and that would be 'West Europe' (which refers to Microsoft's datacenter in Middenmeer in the Netherlands).
 
-![Setup step 3](./assets/step3.png)
+The Storage account, Key vault and Application insights will be automatically filled in as you type the workspace name. You do not have to change these fields and can leave them at their default values.
 
-Now click the Review+Create button, and then click Create. Your machine learning workspace will now be deployed. This can take a couple of minutes.
+You also don't need to change the Container registry field. We do not need a specific container registry in this training.
 
-After deployment is complete, you'll be notified like this. Click the Go To Resource button to access your new workspace.
+![Setup step 3](./assets/new/image1.png)
 
-![Setup step 4](./assets/step4.png)
+Now click the blue Review+Create button, and then click Create. Your machine learning workspace will now be deployed. This can take a couple of minutes.
+
+After deployment is complete, you'll be notified like in the image below. Click the Go To Resource button to access your new workspace.
+
+![Setup step 4](./assets/new/image2.png)
 
 ## Access the Azure Machine Learning Studio interface
 
@@ -48,17 +51,15 @@ You can now manage your workspace in the Azure portal, but it contains lots of i
 
 For us machine learning practicioners Microsoft has provided a much better web interface that's specially designed for managing machine learning resources. This interface is called the Azure Machine Learning Studio. 
 
-You can access the studio interface by clicking this button:
+You can access the studio interface by clicking the blue 'Launch studio' button:
 
-![Setup step 5](./assets/step5.png)
+![Setup step 5](./assets/new/image3.png)
 
 This will launch the Azure Machine Learning Studio. 
 
-You'll have to provide your subscription, resource group, and workspace name again. Just select the same values you entered previously when creating the workspace. 
-
 You're now looking at the Azure Machine Learning Studio interface. We will be spending most of our time here while we work through the assignments in this course. 
 
-![Azure Machine Learning Studio](./assets/mlstudio.png)
+![Azure Machine Learning Studio](./assets/new/image4.png)
 
 ## Create a Compute Instance
 
@@ -76,49 +77,67 @@ Let's set up both of them right now.
 
 In the Azure Machine Learning Studio you'll notice a menu bar on the left. In this menu click on the Compute link (it's in the Manage section near the bottom). 
 
+![Compute setup step 1](./assets/new/image5.png)
+
 You're now on the compute page. You'll notice that there are no compute instances configured yet and the list is empty. 
 
-Make sure the Compute Instance tab is selected, and then click on the New button:
+Make sure the Compute Instance tab is selected, and then click on the blue +New button:
 
-![Compute setup step 1](./assets/compute-step1.png)
+![Compute setup step 1b](./assets/new/image6.png)
+
 
 To create a new compute instance, specify the following:
 
-* The name of the new compute instance.
+* The name of the new compute instance. Type a nice name like 'techionista-compute' or something else.
 * The virtual machine type, this can be either CPU or GPU. Select CPU for this training to keep costs low. 
-* The virtual machine size. Select the smallest available size D1. The virtual machine will have only one virtual CPU core and 3.5 gigabytes of RAM, this again keeps costs low. 
+* The virtual machine size. Click 'Select from all options'  and then type 'DS11' in the search field. The search result list will then show the 'Standard_DS11_v2' size. Select it.
 
-Note that we're selecting the smallest possible virtual machine size for this training in order to keep daily costs as low as possible. For large-scale professional machine learning projects, you would probably select the GPU virtual machine type and a much larger size. But keep in mind that this will also be significantly more expensive.  
+Note that we're selecting the smallest possible virtual machine size for this training in order to keep daily costs as low as possible. 
 
-Leave all other settings at their default values and click the blue Create button.
+If you want, you can also select the GPU virtual machine type and enter 'NC6' in the search field. This will display the 'Standard_NC6' size. This virtual machine will give you better performance but at a higher cost.
 
-![Compute setup step 2](./assets/compute-step2.png)
+Now click the blue Create button.
 
-The compute instance will now be created. This can take a couple of minutes, so while we're waiting, we are going to set up a compute cluster as well.
+![Compute setup step 2](./assets/new/image8.png)
+
+The compute instance will now be created, this can take a couple of minutes. When the instance is ready, you will see it appear in the compute instance list with the status 'Running':
+
+![Compute setup step 2](./assets/new/image10.png)
 
 ## Create a Compute Cluster
 
-Make sure you select the Compute Cluster tab at the top of the page, and then click the New button. 
+Make sure you select the Compute Cluster tab at the top of the page, and then click the blue +New button. 
+
+![Compute setup step 2](./assets/new/image12.png)
 
 We're going to set up a new cluster by providing the following information:
 
-* The name of the new compute cluster.
+* The virtual machine priority. Set this to Low priority to save money. 
 * The virtual machine type. Just like with the compute instance, select the CPU type here.
-* The virtual machine priority. Set this to Low Priority to save money. The downside is that training runs will now take longer because other Azure users might pre-empt our cluster for their jobs.
-* The virtual machine size. We are again going to use the D1 size which gives us 1 virtual CPU core and 3.5 GB of RAM for each virtual machine in the cluster.
-* Minimum number of nodes. Set this to zero to ensure that all virtual machines in the cluster shut down when we are not training models.
-* Maximum number of nodes. Set this to 2, so that during peak load we never have more than two virtual machines running.
-* Idle seconds before shut down. Set this to 120 seconds. If we are not using our cluster for more than two minutes, it will automatically shut down. 
+* The virtual machine size. Click 'Select from all options'  and then type 'D1' in the search field. The search result list will then show the 'Standard_D1' size. Select it.
 
-You can see that we're again selecting values to keep costs as low as possible. This will work fine in this course, but you will probably select more generous settings for your own large-scale machine learning projects. 
+Note that we're selecting the smallest possible virtual machine size for this training in order to keep daily costs as low as possible. 
+
+If you want, you can also select the Dedicated priority, GPU virtual machine type and then enter 'NC6' in the search field. This will display the 'Standard_NC6' size. This virtual machine will give you better performance but at a higher cost.
+
+Now click the blue Next button.
+
+![Compute setup step 2](./assets/new/image13.png)
+
+Now we need to provide the following:
+
+* The name of the new compute cluster. Give it a nice name like 'techionista_ccl'. 
+* Minimum number of nodes. Set this to zero to ensure that all virtual machines in the cluster shut down when we are not training models.
+* Maximum number of nodes. Set this to 2 so that during peak load we have two virtual machines running.
+* Idle seconds before shut down. Set this to 120 seconds. If we are not using our cluster for more than two minutes, it will automatically shut down. 
 
 Click the blue Create button to set up the cluster. 
 
-![Compute setup step 3](./assets/compute-step3.png)
+![Compute setup step 2](./assets/new/image15.png)
 
-After a couple of minutes, both the compute instance and the compute cluster will be running. You should see a green Running indicator on both the Compute Instance and Compute Cluster tabs:
+After a couple of minutes the compute cluster will be running. You should see a green icon and the text 'Succeeded' in the Compute Cluster tab:
 
-![Azure ML Compute overview](./assets/compute-running.png)
+![Azure ML Compute overview](./assets/new/image17.png)
 
 Congratulations! Your Azure Machine Learning Studio is now fully operational. We will use these compute resources in the upcoming course assignments to build, train, and run several cool machine learning models. 
  
