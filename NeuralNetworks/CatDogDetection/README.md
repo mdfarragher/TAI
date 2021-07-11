@@ -25,53 +25,29 @@ Open the Azure Machine Learning Studio and navigate to the datasets list. Create
 * Name: cats-and-dogs
 * Dataset type: File
 
-![Create dataset step1](./assets/catsdogs1.png)
+![Create dataset step1](./assets/new/image2.png)
 
 Click the blue Next button and then select the **catsanddogs2.zip** file you downloaded earlier. 
 
-![Create dataset step2](./assets/catsdogs2.png)
+![Create dataset step2](./assets/new/image4.png)
 
 Click the blue Next button and confirm your new dataset.
 
+![Create dataset step2](./assets/new/image6.png)
+
 You now have all 4000 images of cats and dogs uploaded in Azure Machine Learning and ready for training a deep neural network. 
-
-But before we start building the training pipeline, we need to do one more thing.
-
-## Set up a GPU training cluster
-
-This assignment features a lot of training data which migh be too much for our basic D1 compute cluster. To speed up the pipeline we're going to have to quickly provision some heavy duty hardware.
-
-Go to the Compute page in Azure ML Studio and select the Compute Clusters tab. 
-
-Click the +New button, and add the following cluster:
-
-* Compute name: [choose a name for the cluster]
-* Virtual machine type: GPU
-* Virtual machine priority: Low priority
-* Virtual machine size: Standard_NC6
-* Minimum number of nodes: 0
-* Maximum number of nodes: 2
-* Idle seconds...: 120
-
-![Setup GPU cluster](./assets/new-cluster.png)
-
-Click the blue Create button and wait until the cluster is up and running. 
-
-Then when you create your training pipeline, click the gear icon at the top of the page, and in the information panel switch the pipeline over to the new compute cluster.
-
-![Set compute cluster](./assets/set-cluster.png)
-
-Your pipeline will now run on the new cluster. This can make your training time up to 100x faster. 
-
-But keep in mind that training on images is a very heavy-duty machine learning task. Even with this beefed-up cluster, training a deep neural network on our 4000 images is going to take at least an hour!
 
 ## Building the training pipeline
 
-Open the Azure Machine Learning Designer and create a new pipeline. Don't forget to set the compute cluster to the new GPU cluster you just created.
+Open the Azure Machine Learning Designer and create a new pipeline. Then set the compute cluster to the NC6 GPU cluster you created in the digit recognition assignment.
 
-Then open the datasets group and drag the cats-and-dogs dataset onto your designer canvas:
+Recognizing cats and dogs is a very compute-intensive operation, and we'll need the extra power of the NC6 cluster to complete machine learning training in a timely manner.
 
-![Build training pipeline step 1](./assets/pipeline1.png)
+![Build training pipeline step 1](./assets/new/image14.png)
+
+Now open the datasets group and drag the cats-and-dogs dataset onto your designer canvas:
+
+![Build training pipeline step 1](./assets/new/image16.png)
 
 This is the file dataset containing our 4000 cat and dog images. But we can't train on this dataset yet. We first need to convert it to an **image directory**: a specialized datastructure for training machine learning models on image collections.
 
@@ -81,7 +57,7 @@ When we create an image directory, Azure will correctly label each image and the
 
 Let's set this up. Open the Computer Vision group and drag the Convert To Image Directory module onto the pipeline canvas. Then connect the dataset to the Image Directory module:
 
-![Build training pipeline step 2](./assets/pipeline2.png)
+![Build training pipeline step 2](./assets/new/image17.png)
 
 You don't need to configure the Image Directory module. It will automatically scan the zip file, recognize the directory structure, and create a training set with all the images correctly labelled.
 
@@ -94,20 +70,20 @@ Drag the Init Image Transformation module from the Computer Vision group onto th
 * Center crop: True
 * Crop size: 224
 * Pad: False
-* Color jitter: unchecked
-* Grayscale: unchecked
+* Color jitter: False
+* Grayscale: False
 * Random resized crop: False
 * Random crop: False
-* Random horizontal flip: unchecked
-* Random vertical flip: unchecked
+* Random horizontal flip: False
+* Random vertical flip: False
 * Random rotation: False
 * Random affine: False
-* Random grayscale: unchecked
-* Random perspective: unchecked
+* Random grayscale: False
+* Random perspective: False
 
 This will resize each image to 256x256 pixels and then crop the images using a 224x224 box from the center of the image.
 
-![Build training pipeline step 3](./assets/pipeline3.png)
+![Build training pipeline step 3](./assets/new/image19.png)
 
 Now we need to apply this image transformation to the image directory. 
 
@@ -117,7 +93,7 @@ Configure the module as follows:
 
 * Mode: For training
 
-![Build training pipeline step 4](./assets/pipeline4.png)
+![Build training pipeline step 4](./assets/new/image23.png)
 
 Now we're going to split the image directory. We'll reserve 80% of the images for training and 20% of the images for testing. 
 
@@ -129,7 +105,7 @@ Then configure the split as follows:
 
 * Fraction of images in the first output: 0.8
 
-![Build training pipeline step 5](./assets/pipeline5.png)
+![Build training pipeline step 5](./assets/new/image25.png)
 
 We're going to use a trick for this assignment. Instead of training a deep neural network from scratch, we're going to grab a **pretrained** neural network from the Internet and retrain it on our dog and cat pictures. This process is called **fine-tuning** and it's a very popular technique to very quickly build an object detector. 
 
@@ -142,7 +118,7 @@ Drag the ResNet module from the Computer Vision group onto the designer canvas. 
 
 The important setting here is **pretrained**. This tells Azure ML to download the pretrained neural network from the Internet and use it for our cat and dog challenge. This will dramatically reduce our training time.
 
-![Build training pipeline step 6](./assets/pipeline6.png)
+![Build training pipeline step 6](./assets/new/image27.png)
 
 ResNet is a PyTorch model, so we need a specialized training module to train this Python model on the image directory. 
 
@@ -156,7 +132,7 @@ Then configure the module as follows:
 * Random seed: 1
 * Patience: 3
 
-![Build training pipeline step 7](./assets/pipeline7.png)
+![Build training pipeline step 7](./assets/new/image30.png)
 
 We now have a fully-trained PyTorch neural network capable of detecting cats and dogs in images. All that remains is to score the network on the test data and evaluate the model metrics. 
 
@@ -164,13 +140,13 @@ Open the Model Scoring & Evaluation group and drag the Score Image Model module 
 
 Then drag the Evaluate Model module onto the canvas and connect it to the Score Image Model module.
 
-![Build training pipeline step 8](./assets/pipeline8.png)
+![Build training pipeline step 8](./assets/new/image32.png)
 
 The evaluation module will treat this as a multiclass classification problem and calculate the accuracy and micro- and macro precision and recall. 
 
 Your completed pipeline should now look like this:
 
-![Completed pipeline](./assets/full-pipeline.png)
+![Completed pipeline](./assets/new/image33.png)
 
 Run the pipeline in a new experiment, and check out the evaluation results after the run has completed.
 
@@ -179,9 +155,3 @@ Run the pipeline in a new experiment, and check out the evaluation results after
 What results do you get? What is your overall accuracy and your micro- and macro precision and recall? 
 
 Are you happy with these results?
-
-## Cleaning up
-
-The NC6 virtual machines are expensive to run, so make sure to delete the GPU cluster after you have completed this assignment!
-
-If you keep the cluster running, you will very quickly spend all of your free Azure credits and your account will be disabled. 
