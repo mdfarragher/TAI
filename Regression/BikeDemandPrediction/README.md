@@ -46,7 +46,7 @@ You can ignore the record index, the date, and the number of casual and register
 
 ## Building the regression pipeline
 
-Start by uploading the datafile into Azure. Make sure to specify that it's a tabular dataset and verify that the tab separator character is correctly detected, and that all the column datatypes are correct.
+Start by uploading the datafile into Azure. Make sure to specify that it's a tabular dataset with a header row, verify that the tab separator character is correctly detected, and that all the column datatypes are correct.
 
 Then create a new pipeline in the Azure Machine Learning designer and drag the bike demand dataset module onto your pipeline canvas.
 
@@ -54,7 +54,7 @@ Open the Data Transformation panel and drag the Select Columns In Dataset module
 
 Click the Select Columns In Dataset module and in the information panel on the right, configure the Select Columns field as follows:
 
-![Setup pipeline step 1](./assets/pipeline1.png)
+![Setup pipeline step 1](./assets/new/image1.png)
 
 This will include all dataset columns *except* instant, dteday, casual, and regular. This leaves only valid input features to train on. 
 
@@ -71,13 +71,13 @@ Configure the algorithm as follows:
 * Total number of trees constructed: 100
 * Random number seed: 123
 
-![Setup pipeline step 2](./assets/pipeline2.png)
+![Setup pipeline step 2](./assets/new/image2.png)
 
 Now score the model with the 20% test set and then evaluate the scored predictions to calculate performance metrics.
 
 Your completed pipeline should look like this:
 
-![Setup pipeline step 3](./assets/pipeline3.png)
+![Setup pipeline step 3](./assets/new/image4.png)
 
 That's it, you are done.
 
