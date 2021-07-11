@@ -45,30 +45,54 @@ To save time, you can do this directly in your workspace. You don't have to set 
 
 Just go to the Datasets page in your Azure Machine Learning workspace, click the +Create Dataset button, and then select From Local Files from the dropdown menu:
 
-![Create new dataset](./assets/newdataset.png)
+![Create new dataset](./assets/new/image2.png)
 
-This will upload the Heart Disease file directly into your workspace, ready for use in a pipeline.
+Next, name your dataset 'heart-disease' and set the dataset type to 'tabular':
 
-The pipeline for this case study is going to be very similar to the California Housing pipeline you created in the previous lesson. So to get started quickly, simply clone that pipeline: 
+![Create new dataset](./assets/new/image3.png)
 
-![Clone the pipeline](./assets/clonepipeline.png)
+Make sure the datastore field is set to 'workspaceblobstore' and click the blue Upload button to upload the UCI Heart Disease dataset file.
 
-Then we only need to make the following changes:
+![Create new dataset](./assets/new/image4.png)
 
-* Replace the dataset module with the Heart Disease dataset
-* Alter the data processing modules to perform whatever data processing we need
-* Select a classification learning algorithm
-* Select the correct label column
+On the next page, leave all fields to their default values:
+
+![Create new dataset](./assets/new/image5.png)
+
+Om the next page, you'll notice that most columns are set to 'decimal' but columns 12 and 13 are set to 'string'. This is because these columns have some missing values indicated in the file by a '?' character. Trying to load these columns directly as a decimal would cause an error. 
+
+You can leave all fields to their default values and click Next.
+
+![Create new dataset](./assets/new/image6.png)
+
+Finally, check the summary of all settings and click the blue Create button to set up the new dataset:
+
+![Create new dataset](./assets/new/image7.png)
+
+The Heart Disease dataset will be set up in your workspace, ready for use in a pipeline.
 
 ## Building a classification pipeline
 
 Let's get started building our classification pipeline.
 
-First, create a new tabular dataset called cleveland-heart-disease and upload the CSV file. Make sure you set all column types to Decimal, and note that this file does not have any column headers.
+The pipeline for this case study is going to be very similar to the California Housing pipeline you created in the previous lesson. So to get started quickly, we can simply clone that pipeline.
 
-Now clone the California Housing pipeline. Name the copy cleveland-heart-disease-pipeline. 
+Go to the designer page and open the California housing pipeline:
 
-Now replace the first module (the dataset) with the heart disease dataset. Also edit the SQL Transformation module and change the SQL statement to this:
+![Clone the pipeline](./assets/new/image10.png)
+
+Then go to the elipsis menu item (...) in the top right of the page, click it, and select 'Clone' from the drop-down menu:
+
+![Clone the pipeline](./assets/new/image12.png)
+
+We now have an exact copy of the California housing pipeline. We'll need to make the following changes:
+
+* Replace the dataset module with the Heart Disease dataset
+* Alter the data processing modules to perform whatever data processing we need
+* Select a binary classification learning algorithm
+* Select the correct label column
+
+Let's get started. Replace the first module (the dataset) with the heart disease dataset. Also edit the SQL Transformation module and change the SQL statement to this:
 
 ```
 select 
@@ -94,19 +118,19 @@ from t1
 
 This SQL statement reintroduces column labels, and also fixes the label column to a pure Boolean value: 0 for healthy patients and 1 for sick patients.
 
-Now remove the Group Into Bins and Convert To Indicator modules.
-
 Your pipeline should now look like this:
 
-![Classificationn pipeline step 1](./assets/pipeline1.png)
+![Classificationn pipeline step 1](./assets/new/image13.png)
 
-All columns in the dataset are already numerical so we can simply load them all directly into a machine learning model for training. But let's do a bit of nornmalization first. 
+All columns in the dataset are numerical so we can load them directly into a machine learning model for training. But let's do a bit of nornmalization first. 
 
-Open the Data Transformation group and drag a Normalize Data module onto the pipeline canvas. Place the module below the SQL Transformation module. 
+Remove the Group Into Bins and Convert To Indicator modules. Replace them with a Normalize Data module from the Data Transformation group. Make sure the module is directly below the SQL Transformation module. 
 
-Hook the Normalization module up to the Transformation module and the Split module, and configure the module to normalize columns 1 to 11. 
+Hook the Normalization module up to the Transformation module and the Split module, and configure the module as folows:
 
-![Classification pipeline step 2](./assets/pipeline2.png)
+* Columns to transform: Column indices 1 to 11. 
+
+![Classification pipeline step 2](./assets/new/image15.png)
 
 Now open the Machine Learning Algorithms group and drag a Two-Class Logistic Regression algorithm onto the pipeline canvas. Hook the module up to the Train Model module.
 
@@ -117,11 +141,11 @@ Configure the logistic regression module as follows:
 * L2 regularization weight: 1.0
 * Random number seed: 123
 
-![Classification pipeline step 3](./assets/pipeline3.png)
+![Classification pipeline step 3](./assets/new/image17.png)
 
 The last thing you need to do is click on the Train Model module, and set the label column to: diagnosis.
 
-![Classification pipeline step 4](./assets/pipeline4.png)
+![Classification pipeline step 4](./assets/new/image19.png)
 
 That's it, your pipeline is done.
 
