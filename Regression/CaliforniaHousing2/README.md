@@ -16,17 +16,21 @@ We will now expand on that pipeline and add binning and one-hot encoding modules
 
 Let's get started. Your first task is to start the Azure Machine Learning designer and open the California Housing pipeline.
 
-![California housing pipeline step 1](./assets/pipeline1.png)
+![California housing pipeline step 1](./assets/new/image1.png)
 
 We're going to add extra modules below the SQL Transformation module. So let's start by making some room.
 
-Using the designer toolbar buttons, zoom out until you can see your entire pipeline. Then click the Multiple Select Mode button (3rd from the right on the toolbar) and drag to select everything in your pipeline below the SQL Transformation. Drag the selected components down to make room.
+Select the dataset block (the topmost block in the pipeline) and drag it up to create room for adding new blocks below.
 
-Your new layout should look something like this:
+Now select the Apply SQL Transformation block and do the same: drag it up to create room for adding new blocks below.
 
-![California housing pipeline step 2](./assets/pipeline2.png)
+Your new layout should look like this:
 
-Now open the Data Transformation group and drag a Group Data Into Bins module onto the canvas. Connect the output of the SQL Transformation to the input of the Grouping module.
+![California housing pipeline step 2](./assets/new/image2.png)
+
+Select the link between the Apply SQL Transformation block and the Split Data block, and delete it by pressing the delete button on your keyboard.
+
+Open the Data Transformation group and drag a Group Data Into Bins module onto the canvas. Connect the output of the SQL Transformation to the input of the Grouping module.
 
 Configure the grouping as follows:
 
@@ -38,7 +42,7 @@ Configure the grouping as follows:
 
 This will bin the latitude and longitude into 10 buckets, replacing the original columns. The new binned columns will be marked as categories meaning we can easily one-hot encode them later. 
 
-![California housing pipeline step 3](./assets/pipeline3.png)
+![California housing pipeline step 3](./assets/new/image4.png)
 
 Now drag a Convert To Indicator Values module on the pipeline canvas. Place it below the grouping module, and connect the **leftmost** output of the grouping module to the input of the Convert To Indicator Values module. 
 
@@ -51,7 +55,7 @@ Then configure the Convert To Indicator Values module as follows:
 
 This will one-hot encode the binned latitude and longitude columns, replacing the original columns. 
 
-![California housing pipeline step 4](./assets/pipeline4.png)
+![California housing pipeline step 4](./assets/new/image6.png)
 
 That's it, your pipeline is done.
 
