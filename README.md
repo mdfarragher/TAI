@@ -1,2 +1,2 @@
 # TAI
-This repository contains the assignments for the Techionista AI and Machine Learning training held on March 15th 2021.
+This repository contains the assignments for the Techionista 3-day AI and Machine Learning training.
