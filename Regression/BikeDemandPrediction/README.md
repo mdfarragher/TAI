@@ -56,7 +56,7 @@ Click the Select Columns In Dataset module and in the information panel on the r
 
 ![Setup pipeline step 1](./assets/new/image1.png)
 
-This will include all dataset columns *except* instant, dteday, casual, and regular. This leaves only valid input features to train on. 
+This will include all dataset columns *except* instant, dteday, casual, and registered. This leaves only valid input features to train on. 
 
 Now continue the pipeline in the usual manner. Split the data 80/20 and use the 80% set for training. 
 
