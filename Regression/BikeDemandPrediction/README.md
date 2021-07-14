@@ -73,7 +73,7 @@ Configure the algorithm as follows:
 
 ![Setup pipeline step 2](./assets/new/image2.png)
 
-Now score the model with the 20% test set and then evaluate the scored predictions to calculate performance metrics.
+Train the model using the cnt column, and score it with the 20% test set. Then evaluate the scored predictions to calculate performance metrics.
 
 Your completed pipeline should look like this:
 
