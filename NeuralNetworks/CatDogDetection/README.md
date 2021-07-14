@@ -114,7 +114,7 @@ We will use the ResNet neural network in this assignment. This machine learning 
 Drag the ResNet module from the Computer Vision group onto the designer canvas. Configure it as follows:
 
 * Model name: resnetx101_32x8d
-* Pretrained: checked
+* Pretrained: True
 
 The important setting here is **pretrained**. This tells Azure ML to download the pretrained neural network from the Internet and use it for our cat and dog challenge. This will dramatically reduce our training time.
 
