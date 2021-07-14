@@ -51,7 +51,7 @@ Configure the K-Means algorithm as follows:
 * Initialization: K-Means++
 * Random number seed: 123
 * Metric: Euclidian
-* Normalize features: checked
+* Normalize features: True
 * Iterations: 100
 * Assign label mode: Ignore label column
 
