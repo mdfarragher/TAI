@@ -136,7 +136,7 @@ Then configure the module as follows:
 
 We now have a fully-trained PyTorch neural network capable of detecting cats and dogs in images. All that remains is to score the network on the test data and evaluate the model metrics. 
 
-Open the Model Scoring & Evaluation group and drag the Score Image Model module onto the designer canvas. Connect it to the Train PyTorch module. 
+Open the Model Scoring & Evaluation group and drag the Score Image Model module onto the designer canvas. Connect the **leftmost** input to Train PyTorch Model, and the **rightmost** input to the **rightmost** output of Split Image Directory. 
 
 Then drag the Evaluate Model module onto the canvas and connect it to the Score Image Model module.
 
