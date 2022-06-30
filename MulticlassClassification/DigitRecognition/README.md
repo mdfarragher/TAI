@@ -99,7 +99,6 @@ Click the +New button, and add the following cluster:
 
 * Virtual machine priority: Dedicated
 * Virtual machine type: GPU
-* Virtual machine priority: Low priority
 * Virtual machine size: Select from recommended options
 * Name: Standard_NC6
 
@@ -109,7 +108,7 @@ And on the next page:
 
 * Compute name: [choose a name for the cluster]
 * Minimum number of nodes: 0
-* Maximum number of nodes: 2
+* Maximum number of nodes: 1
 * Idle seconds...: 120
 
 Click the blue Create button and wait until the cluster is up and running. 
