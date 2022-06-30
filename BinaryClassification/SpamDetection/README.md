@@ -57,7 +57,7 @@ But we can't train on this dataset yet because the original text is still in the
 
 So, open the Data Transformation group and drag the Select Columns In Dataset module onto the pipeline designer. Place the module between the Feature Hasing and Split Data modules.
 
-Configure the module to select columns by indices, and specify the indices: 1, 3-1024.
+Configure the module to include all columns. Then add a second line and configure it to exclude the column with index 2.
 
 This will keep all columns except column 2 which contains the original SMS text. 
 
