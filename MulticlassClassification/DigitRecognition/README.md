@@ -54,7 +54,7 @@ Both files have column headers in the first row, so make sure you specify this w
 
 Let's get started building our multiclass classification pipeline.
 
-Start by cloning the completed California Housing pipeline. Name the copy mnist-pipeline. 
+Start by cloning the completed Cleveland Medical pipeline. Name the copy mnist-pipeline. 
 
 In the pipeline designer, delete the heart disease dataset and replace it with the two MNIST training and testing datasets. 
 
